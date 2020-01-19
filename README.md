@@ -12,7 +12,8 @@ This is a single-screen app which looks as follows: <br />
 
 ## Binary file
 
-/DuplicateFileManager.exe
+DuplicateFileManager.exe direct download here: <br />
+https://github.com/shreeharshas/DuplicateFilesRemover/raw/master/DuplicateFilesManager.exe
 
 ## Usage Info:
 
