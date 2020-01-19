@@ -100,6 +100,7 @@ namespace DuplicateFilesManager
 
         private void RefreshDuplicateFiles(string folderPath)
         {
+            this.DuplicateFiles.Clear();
             string strErrMsg = "";
             Dictionary<string, List<DuplicateFile>> retDict = new Dictionary<string, List<DuplicateFile>>();
             try
@@ -122,7 +123,7 @@ namespace DuplicateFilesManager
                     if (kvp.Value.Count > 1)
                         this.DuplicateFiles[kvp.Key] = kvp.Value;
                 }
-
+                
                 //return retDict.Where(kvp => kvp.Value.Count > 1);
                 //return retDict;
             }
@@ -161,20 +162,92 @@ namespace DuplicateFilesManager
             }
         }
 
-        private void btnSelectDuplicates_Click(object sender, EventArgs e)
+        private bool IsTreeViewEmpty()
         {
             if (tvDuplicates.Nodes.Count == 0)
+                return true;
+            else if (tvDuplicates.Nodes.Count == 1)
+            {
+                return (tvDuplicates.Nodes[0].Nodes == null || tvDuplicates.Nodes[0].Nodes.Count == 0);
+            }
+            return false;
+        }
+
+        private void btnSelectDuplicates_Click(object sender, EventArgs e)
+        {
+            if (IsTreeViewEmpty())
             {
                 ShowTreeViewMessage("Nothing to select");
                 return;
             }
 
             TreeNode firstNode = tvDuplicates.Nodes[0];
+            foreach (TreeNode tn in firstNode.Nodes)
+                tn.Checked = true;
+            firstNode.FirstNode.Checked = false;
 
+            TreeNode nextNode = firstNode.NextNode;
+            while (nextNode != null)
+            {
+                foreach (TreeNode tn in nextNode.Nodes)
+                    tn.Checked = true;
+                nextNode.FirstNode.Checked = false;
+                nextNode = nextNode.NextNode;
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Brought to you by Shree (sridhash@gmail.com). Visit https://www.shreeharsha.me for more!");
+        }
+
+        private void btnDeleteSelected_Click(object sender, EventArgs e)
+        {
+            if (IsTreeViewEmpty())
+            {
+                ShowTreeViewMessage("Nothing to delete");
+                return;
+            }
+
+            DialogResult messageBoxResult = MessageBox.Show("Are you sure you want to delete?",
+                "Confirm removal", MessageBoxButtons.YesNo);
+            if (messageBoxResult == DialogResult.Yes)
+            {
+                StringBuilder sb = new StringBuilder();
+                StringBuilder sbErrorFiles = new StringBuilder();
+
+                foreach (TreeNode tn in tvDuplicates.Nodes)
+                {
+                    foreach (TreeNode fileNode in tn.Nodes)
+                    {
+                        if (fileNode.Checked && fileNode.Text.Contains(":"))
+                        {
+                            try
+                            {
+                                File.Delete(fileNode.Text);
+                            }
+                            catch (Exception ex)
+                            {
+                                sbErrorFiles.AppendLine(ex.Message);
+                            }
+                        }
+                    }
+                }
+                if (sbErrorFiles.Length > 0)
+                {
+                    MessageBox.Show("Some files could not be deleted, following is the list of error messages:" + "\n" + sbErrorFiles.ToString());
+                }
+                else
+                {
+                    ShowTreeViewMessage("Duplicates deleted, please click refresh to check again.");
+                }
+            }
         }
     }
 }
-/* Future Enhancements:
- Delete folder if folder is empty = if hashcode is selected
- Move to parent if only file in the directory
-     */
+
