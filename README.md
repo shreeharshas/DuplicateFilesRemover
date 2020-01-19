@@ -1,18 +1,18 @@
 ## General Info:
 
-I wanted to clear some disk space and found that i had copy-pasted some folders randomly causing the duplicates to use up disk space on my laptop. <br /> <br />
+My dad wanted to clear some disk space on his computer and found that there were some duplicate folders at random locations occuping unnecesary disk space. <br /> <br />
 
-Since there were too many files and they were distributed too randomly, I didn't want to manually check them one by one. <br />
-I also wanted to have control over the files I deleted because I didn't want the program to simple delete them without running them by me. <br /> <br />
+Since there were too many files and they were distributed randomly, he didn't want to manually check them one by one. <br />
+He also wanted to have control over the files to be deleted because he didn't want the program to simple delete them without running them by him. <br /> <br />
 
 So I wrote a simple program to quickly group the files which were the same and also show me all of them as options for me to choose before it removed them. <br />
 
-This is a single-screen app which looks as follows: <br />
+This is a single-screen app which looks as follows: <br /> <br/>
 ![Main Screen](/DFR.png) <br />
 
 ## Binary file
 
-DuplicateFileManager.exe direct download here: <br />
+DuplicateFileManager.exe direct download is here: <br />
 https://github.com/shreeharshas/DuplicateFilesRemover/raw/master/DuplicateFilesManager.exe
 
 ## Usage Info:
@@ -25,9 +25,6 @@ This app is simple and self explanatory, verbose explanation as below: <br /> <b
 --> Double click on the file names to preview in Windows explorer <br />
 --> Click Select Duplicate files button to select all files but the first in every section <br />
 --> Click Delete Selected Files button to remove the files <br /> <br />
-
-Relatively bigger files such as videos may take longer time to be processed. <br />
-Refer to General Info for the reason behind this app. <br />
 
 ## Technical Details:
 
@@ -44,6 +41,7 @@ Development framework - Microsoft Dotnet framework version 4.0 <br />
 ## Warning:
 
 This is a beta version and is to be used at your own risk. <br />
+Relatively bigger files such as videos may take longer time to be processed. <br />
 The files are not moved to the recycle bin so make sure you double-check the files before deleting. <br />
 
 ## Terms and Conditions:
@@ -52,12 +50,12 @@ Use this app at your own risk - I do not guarantee anything and do not want to b
 
 ## Known Issues:
 
-Goto https://github.com/shreeharshas/DuplicateFilesRemover/labels/bug
+Visit https://github.com/shreeharshas/DuplicateFilesRemover/labels/bug
 
 ## Future Enhancements:
 
-Goto https://github.com/shreeharshas/DuplicateFilesRemover/labels/enhancement
+Visit https://github.com/shreeharshas/DuplicateFilesRemover/labels/enhancement
 
 ## I open to suggestions on these topics:
 
-https://github.com/shreeharshas/DuplicateFilesRemover/labels/help%20wanted
+Visit https://github.com/shreeharshas/DuplicateFilesRemover/labels/help%20wanted
