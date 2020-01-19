@@ -151,10 +151,20 @@ namespace DuplicateFilesManager
         {
             try
             {
-                //string dirPath = e.Node.Text;                
-                string argument = "/select, \"" + e.Node.Text + "\"";
+                if (e.Node.Text.Contains(":"))
+                {
+                    //string dirPath = e.Node.Text;                
+                    string argument = "/select, \"" + e.Node.Text + "\"";
 
-                System.Diagnostics.Process.Start("explorer.exe", argument);
+                    System.Diagnostics.Process.Start("explorer.exe", argument);
+                }
+                else
+                {
+                    foreach (TreeNode tn in e.Node.Nodes)
+                    {
+                        tn.Checked = e.Node.Checked;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -248,6 +258,22 @@ namespace DuplicateFilesManager
                 }
             }
         }
+
+        private void tvDuplicates_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            if (!e.Node.Text.Contains(":"))
+            {
+                foreach (TreeNode tn in e.Node.Nodes)
+                {
+                    tn.Checked = e.Node.Checked;
+                }
+            }
+        }
     }
 }
+/*
+ Notes:
+
+    If node text contains a colon, it is assumed to be a file path starting as a drive letter e.g., C:, D:, etc.
+*/
 

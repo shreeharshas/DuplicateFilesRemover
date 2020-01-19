@@ -163,6 +163,7 @@
             this.tvDuplicates.Name = "tvDuplicates";
             this.tvDuplicates.Size = new System.Drawing.Size(691, 276);
             this.tvDuplicates.TabIndex = 4;
+            this.tvDuplicates.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvDuplicates_AfterCheck);
             this.tvDuplicates.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvDuplicates_NodeMouseDoubleClick);
             // 
             // exitToolStripMenuItem
