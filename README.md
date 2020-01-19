@@ -56,6 +56,6 @@ Visit https://github.com/shreeharshas/DuplicateFilesRemover/labels/bug
 
 Visit https://github.com/shreeharshas/DuplicateFilesRemover/labels/enhancement
 
-## I open to suggestions on these topics:
+## I'm open to suggestions on these topics:
 
 Visit https://github.com/shreeharshas/DuplicateFilesRemover/labels/help%20wanted
