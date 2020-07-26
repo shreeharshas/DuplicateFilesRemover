@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.852
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplicateFilesManager", "DuplicateFilesManager\DuplicateFilesManager.csproj", "{740E5A12-A62E-4669-8D72-097D8B9CD7EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplicateFilesManager.Models", "DuplicateFileManager.Models\DuplicateFilesManager.Models.csproj", "{74795B9A-1E65-48E2-B1AC-90D4299C7E65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplicateFilesManager.Core", "DuplicateFilesManager.Core\DuplicateFilesManager.Core.csproj", "{91F53377-4736-4E27-A461-CCBC79990A7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{740E5A12-A62E-4669-8D72-097D8B9CD7EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{740E5A12-A62E-4669-8D72-097D8B9CD7EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{740E5A12-A62E-4669-8D72-097D8B9CD7EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74795B9A-1E65-48E2-B1AC-90D4299C7E65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74795B9A-1E65-48E2-B1AC-90D4299C7E65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74795B9A-1E65-48E2-B1AC-90D4299C7E65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74795B9A-1E65-48E2-B1AC-90D4299C7E65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F53377-4736-4E27-A461-CCBC79990A7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F53377-4736-4E27-A461-CCBC79990A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F53377-4736-4E27-A461-CCBC79990A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F53377-4736-4E27-A461-CCBC79990A7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

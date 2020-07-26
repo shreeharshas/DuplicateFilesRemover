@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DuplicateFileManager.Models;
+using DuplicateFilesManager.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,25 +9,27 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DuplicateFilesManager.Core;
 
 namespace DuplicateFilesManager
 {
     public partial class frmMain : Form
     {
-        #region Members
+        #region Members       
+
         private string UserFolderPath;
-        private Dictionary<string, List<DuplicateFile>> DuplicateFiles;
+        //private Dictionary<string, List<DuplicateFile>> DuplicateFiles;
+
+        CancellationTokenSource cts = new CancellationTokenSource();
         #endregion
 
         #region Methods
         public frmMain()
         {
             InitializeComponent();
-
-            if (this.DuplicateFiles == null)
-                this.DuplicateFiles = new Dictionary<string, List<DuplicateFile>>();
         }
 
         private void ShowTreeViewMessage(string message)
@@ -36,59 +40,53 @@ namespace DuplicateFilesManager
             tvDuplicates.Nodes.Add(tnMessage);
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private async void btnStartScan_Click(object sender, EventArgs e)
         {
+            cts.Dispose();
+            cts = new CancellationTokenSource();
             tvDuplicates.Nodes.Clear();
-            UserFolderPath = txtFolderPath.Text;
+            ShowTreeViewMessage("Please wait, processing...");
+            UserFolderPath = txtFolderPath.Text;            
             if (String.IsNullOrWhiteSpace(UserFolderPath))
             {
                 MessageBox.Show("Please select folder first");
                 return;
             }
 
-            RefreshDuplicateFiles(UserFolderPath);
+            CoreLogic logic = new CoreLogic();
+            try
+            {
+                FileMap dupFilesMap = await logic.GetDuplicateFilesMap(UserFolderPath, cts);
 
-            if (this.DuplicateFiles.Count == 0)
-            {
-                //MessageBox.Show("No duplicate files found!");
-                ShowTreeViewMessage("No duplicate files found!");
-                return;
-            }
-            /*IEnumerable<KeyValuePair<string, List<DuplicateFile>>> dups = RefreshDuplicateFiles(UserFolderPath);
-            List<string> duplicateHashCodesList = new List<string>();
-            List<string> duplicateFilesList = new List<string>();
-            duplicateHashCodesList.Add("----------------------------------------ALL-----------------------------------------");
-            foreach (KeyValuePair<string, List<DuplicateFile>> kvp in dups)
-            {
-                duplicateHashCodesList.Add(kvp.Key);
-                foreach (DuplicateFile dpFile in kvp.Value)
-                    duplicateFilesList.Add(dpFile.filePath);
-            }
-            
-            lstPotentialDuplicate.DataSource = duplicateHashCodesList;
-            ((ListBox)(chklstFilesList)).DataSource = duplicateFilesList;
-            */
-            tvDuplicates.CheckBoxes = true;
-            foreach (KeyValuePair<string, List<DuplicateFile>> kvp in this.DuplicateFiles)
-            {
-                if (kvp.Value.Count > 1)
+                if (!string.IsNullOrWhiteSpace(dupFilesMap.ErrorMessage))
+                {
+                    ShowTreeViewMessage(dupFilesMap.ErrorMessage);
+                    return;
+                }
+
+                tvDuplicates.Nodes.Clear();
+                tvDuplicates.CheckBoxes = true;
+
+                foreach (KeyValuePair<string, FileGroup> kvp in dupFilesMap.InternalMap)
                 {
                     TreeNode[] tnChildren = new TreeNode[kvp.Value.Count];
-                    for (int i = 0; i < kvp.Value.Count; i++)
+                    long i = 0L;
+                    foreach (DuplicateFile df in kvp.Value.GroupedFiles)
                     {
-                        DuplicateFile df = kvp.Value[i];
                         TreeNode tnChild = new TreeNode(df.filePath);
-                        tnChild.ToolTipText = "Size(KB):" + Convert.ToString(df.fileSize / 1024);
-                        tnChildren[i] = tnChild;
+                        tnChild.ToolTipText = "Size (KB):" + Convert.ToString(df.fileSize / 1024);
+                        tnChildren[i++] = tnChild;
                     }
                     TreeNode tn = new TreeNode(kvp.Key, tnChildren);
                     tn.Expand();
                     tvDuplicates.Nodes.Add(tn);
                 }
             }
+            catch (TaskCanceledException)
+            {
+                ShowTreeViewMessage("Task Cancelled, press \"Start Scan\" to restart the scan.");
+            }
         }
-
-
 
         private void btnFolderSelect_Click(object sender, EventArgs e)
         {
@@ -97,54 +95,7 @@ namespace DuplicateFilesManager
                 txtFolderPath.Text = folderBrowserDialog1.SelectedPath;
             }
         }
-
-        private void RefreshDuplicateFiles(string folderPath)
-        {
-            this.DuplicateFiles.Clear();
-            string strErrMsg = "";
-            Dictionary<string, List<DuplicateFile>> retDict = new Dictionary<string, List<DuplicateFile>>();
-            try
-            {
-                string[] filePaths = Directory.GetFiles(folderPath, "*.*", SearchOption.AllDirectories);
-                foreach (string filePath in filePaths)
-                {
-                    string hashCode = GetCheckSum(filePath);
-
-                    DuplicateFile dpfl = new DuplicateFile(filePath, hashCode);
-                    List<DuplicateFile> hsOut;
-                    if (!retDict.TryGetValue(hashCode, out hsOut))
-                        hsOut = new List<DuplicateFile>();
-                    hsOut.Add(dpfl);
-                    retDict[hashCode] = hsOut;
-                }
-
-                foreach (KeyValuePair<string, List<DuplicateFile>> kvp in retDict)
-                {
-                    if (kvp.Value.Count > 1)
-                        this.DuplicateFiles[kvp.Key] = kvp.Value;
-                }
-                
-                //return retDict.Where(kvp => kvp.Value.Count > 1);
-                //return retDict;
-            }
-            catch (Exception ex)
-            {
-                strErrMsg = ex.Message;
-            }
-            if (strErrMsg != "")
-                ShowTreeViewMessage(strErrMsg);
-        }
-
-        private string GetCheckSum(string filePath)
-        {
-            using (var md5 = MD5.Create())
-            {
-                using (var stream = File.OpenRead(filePath))
-                {
-                    return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLowerInvariant();
-                }
-            }
-        }
+        
         #endregion
 
         private void tvDuplicates_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -268,6 +219,11 @@ namespace DuplicateFilesManager
                     tn.Checked = e.Node.Checked;
                 }
             }
+        }
+
+        private void btnStopScan_Click(object sender, EventArgs e)
+        {
+            cts.Cancel();
         }
     }
 }

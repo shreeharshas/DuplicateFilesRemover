@@ -34,6 +34,7 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,13 +43,13 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.lstPotentialDuplicate = new System.Windows.Forms.ListBox();
             this.tvDuplicates = new System.Windows.Forms.TreeView();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSelectDuplicates
             // 
-            this.btnSelectDuplicates.Location = new System.Drawing.Point(303, 362);
+            this.btnSelectDuplicates.Location = new System.Drawing.Point(406, 362);
             this.btnSelectDuplicates.Name = "btnSelectDuplicates";
             this.btnSelectDuplicates.Size = new System.Drawing.Size(152, 47);
             this.btnSelectDuplicates.TabIndex = 6;
@@ -81,9 +82,9 @@
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(155, 47);
             this.btnRefresh.TabIndex = 5;
-            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.Text = "Start Scan";
             this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.btnRefresh.Click += new System.EventHandler(this.btnStartScan_Click);
             // 
             // menuStrip1
             // 
@@ -104,6 +105,13 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -115,7 +123,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -166,12 +174,15 @@
             this.tvDuplicates.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvDuplicates_AfterCheck);
             this.tvDuplicates.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvDuplicates_NodeMouseDoubleClick);
             // 
-            // exitToolStripMenuItem
+            // button1
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.button1.Location = new System.Drawing.Point(226, 362);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(155, 47);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Stop Scan";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnStopScan_Click);
             // 
             // frmMain
             // 
@@ -183,6 +194,7 @@
             this.Controls.Add(this.txtFolderPath);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lstPotentialDuplicate);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.chklstFilesList);
             this.Controls.Add(this.btnDeleteSelected);
@@ -215,6 +227,7 @@
         private System.Windows.Forms.ListBox lstPotentialDuplicate;
         private System.Windows.Forms.TreeView tvDuplicates;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }
 
