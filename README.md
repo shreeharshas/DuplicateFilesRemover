@@ -8,12 +8,13 @@ He also wanted to have control over the files to be deleted because he didn't wa
 So I wrote a simple program to quickly group the files which were the same and also show me all of them as options for me to choose before it removed them. <br />
 
 This is a single-screen app which looks as follows: <br /> <br/>
-![Main Screen](/DFR.png) <br />
+![Main Screen](https://github.com/shreeharshas/DuplicateFilesRemover/blob/master/THE%20APP%20IS%20HERE/DFR.png) <br />
 
 ## Binary file
 
-DuplicateFileManager.exe direct download is here: <br />
-https://github.com/shreeharshas/DuplicateFilesRemover/raw/master/DuplicateFilesManager.exe
+DuplicateFileManager can be downloaded from here: <br />
+https://github.com/shreeharshas/DuplicateFilesRemover/tree/master/THE%20APP%20IS%20HERE
+
 
 ## Usage Info:
 
