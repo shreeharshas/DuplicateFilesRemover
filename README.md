@@ -40,10 +40,10 @@ OS - Microsoft Windows 10 <br />
 Development framework - Microsoft Dotnet framework version 4.0 <br />
 
 ## Warning:
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) The files are not moved to the recycle bin so make sure you double-check the files before deleting. <br />
+- ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) This is a beta version and is to be used at your own risk. <br />
+- ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) Relatively bigger files such as videos may take longer time to be processed. <br />
 
-This is a beta version and is to be used at your own risk. <br />
-Relatively bigger files such as videos may take longer time to be processed. <br />
-The files are not moved to the recycle bin so make sure you double-check the files before deleting. <br />
 
 ## Terms and Conditions:
 
