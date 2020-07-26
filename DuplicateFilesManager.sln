@@ -11,6 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplicateFilesManager.Core"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "THE APP IS HERE", "THE APP IS HERE", "{59051053-8195-4074-A820-DE11504913CA}"
 	ProjectSection(SolutionItems) = preProject
+		THE APP IS HERE\DFR.png = THE APP IS HERE\DFR.png
 		THE APP IS HERE\DuplicateFileManager.Models.dll = THE APP IS HERE\DuplicateFileManager.Models.dll
 		THE APP IS HERE\DuplicateFilesManager.Core.dll = THE APP IS HERE\DuplicateFilesManager.Core.dll
 		THE APP IS HERE\DuplicateFilesManager.exe = THE APP IS HERE\DuplicateFilesManager.exe
