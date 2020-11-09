@@ -46,7 +46,7 @@ namespace DuplicateFilesManager
             cts = new CancellationTokenSource();
             tvDuplicates.Nodes.Clear();
             ShowTreeViewMessage("Please wait, processing...");
-            UserFolderPath = txtFolderPath.Text;            
+            UserFolderPath = txtFolderPath.Text;
             if (String.IsNullOrWhiteSpace(UserFolderPath))
             {
                 MessageBox.Show("Please select folder first");
@@ -95,7 +95,7 @@ namespace DuplicateFilesManager
                 txtFolderPath.Text = folderBrowserDialog1.SelectedPath;
             }
         }
-        
+
         #endregion
 
         private void tvDuplicates_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -224,6 +224,33 @@ namespace DuplicateFilesManager
         private void btnStopScan_Click(object sender, EventArgs e)
         {
             cts.Cancel();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (IsTreeViewEmpty()) return;
+
+            TreeNode firstNode = tvDuplicates.Nodes[0];
+            foreach (TreeNode tn in firstNode.Nodes)
+                tn.Checked = false;
+            firstNode.FirstNode.Checked = false;
+
+            TreeNode nextNode = firstNode.NextNode;
+            while (nextNode != null)
+            {
+                foreach (TreeNode tn in nextNode.Nodes)
+                    tn.Checked = false;
+                nextNode.FirstNode.Checked = false;
+                nextNode = nextNode.NextNode;
+            }
+        }
+
+        private void frmMain_Resize(object sender, EventArgs e)
+        {
+            tvDuplicates.Size = new Size(this.Size.Width - 122, this.Size.Height - 236); //66,118
+            pnlButtons.Location = new Point(tvDuplicates.Size.Width / 100, tvDuplicates.Size.Height + 70);
+            txtFolderPath.Size = new Size(tvDuplicates.Size.Width - 122, txtFolderPath.Size.Height);
+            btnFolderSelect.Location = new Point(txtFolderPath.Size.Width + 112 + 28, btnFolderSelect.Location.Y);
         }
     }
 }

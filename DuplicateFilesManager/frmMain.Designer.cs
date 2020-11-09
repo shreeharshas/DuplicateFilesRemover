@@ -44,14 +44,17 @@
             this.lstPotentialDuplicate = new System.Windows.Forms.ListBox();
             this.tvDuplicates = new System.Windows.Forms.TreeView();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.pnlButtons = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
+            this.pnlButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSelectDuplicates
             // 
-            this.btnSelectDuplicates.Location = new System.Drawing.Point(406, 362);
+            this.btnSelectDuplicates.Location = new System.Drawing.Point(332, 25);
             this.btnSelectDuplicates.Name = "btnSelectDuplicates";
-            this.btnSelectDuplicates.Size = new System.Drawing.Size(152, 47);
+            this.btnSelectDuplicates.Size = new System.Drawing.Size(112, 47);
             this.btnSelectDuplicates.TabIndex = 6;
             this.btnSelectDuplicates.Text = "Select all duplicates";
             this.btnSelectDuplicates.UseVisualStyleBackColor = true;
@@ -59,9 +62,9 @@
             // 
             // btnDeleteSelected
             // 
-            this.btnDeleteSelected.Location = new System.Drawing.Point(580, 362);
+            this.btnDeleteSelected.Location = new System.Drawing.Point(618, 25);
             this.btnDeleteSelected.Name = "btnDeleteSelected";
-            this.btnDeleteSelected.Size = new System.Drawing.Size(162, 47);
+            this.btnDeleteSelected.Size = new System.Drawing.Size(112, 47);
             this.btnDeleteSelected.TabIndex = 7;
             this.btnDeleteSelected.Text = "Delete Selected Items";
             this.btnDeleteSelected.UseVisualStyleBackColor = true;
@@ -78,9 +81,9 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(51, 362);
+            this.btnRefresh.Location = new System.Drawing.Point(39, 25);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(155, 47);
+            this.btnRefresh.Size = new System.Drawing.Size(112, 47);
             this.btnRefresh.TabIndex = 5;
             this.btnRefresh.Text = "Start Scan";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -108,7 +111,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -176,35 +179,57 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(226, 362);
+            this.button1.Location = new System.Drawing.Point(187, 25);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(155, 47);
+            this.button1.Size = new System.Drawing.Size(112, 47);
             this.button1.TabIndex = 5;
             this.button1.Text = "Stop Scan";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnStopScan_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(476, 25);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(112, 47);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Deselect All Items";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // pnlButtons
+            // 
+            this.pnlButtons.Controls.Add(this.btnRefresh);
+            this.pnlButtons.Controls.Add(this.button2);
+            this.pnlButtons.Controls.Add(this.btnSelectDuplicates);
+            this.pnlButtons.Controls.Add(this.btnDeleteSelected);
+            this.pnlButtons.Controls.Add(this.button1);
+            this.pnlButtons.Location = new System.Drawing.Point(12, 347);
+            this.pnlButtons.Name = "pnlButtons";
+            this.pnlButtons.Size = new System.Drawing.Size(776, 100);
+            this.pnlButtons.TabIndex = 9;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pnlButtons);
             this.Controls.Add(this.tvDuplicates);
             this.Controls.Add(this.btnFolderSelect);
             this.Controls.Add(this.txtFolderPath);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lstPotentialDuplicate);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.chklstFilesList);
-            this.Controls.Add(this.btnDeleteSelected);
-            this.Controls.Add(this.btnSelectDuplicates);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "frmMain";
             this.Text = "Duplicate File Remover";
+            this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.pnlButtons.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,6 +253,8 @@
         private System.Windows.Forms.TreeView tvDuplicates;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel pnlButtons;
     }
 }
 
