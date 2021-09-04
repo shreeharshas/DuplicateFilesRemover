@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DuplicateFileManager.Models
+namespace DuplicateFilesManager.Models
 {
     public class FileMap
     {

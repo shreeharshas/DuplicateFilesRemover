@@ -1,5 +1,4 @@
-﻿using DuplicateFileManager.Models;
-using DuplicateFilesManager.Models;
+﻿using DuplicateFilesManager.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;

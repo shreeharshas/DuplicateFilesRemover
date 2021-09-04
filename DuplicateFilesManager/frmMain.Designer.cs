@@ -43,8 +43,8 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.lstPotentialDuplicate = new System.Windows.Forms.ListBox();
             this.tvDuplicates = new System.Windows.Forms.TreeView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnStopScan = new System.Windows.Forms.Button();
+            this.btnDeselectAll = new System.Windows.Forms.Button();
             this.pnlButtons = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.pnlButtons.SuspendLayout();
@@ -52,7 +52,7 @@
             // 
             // btnSelectDuplicates
             // 
-            this.btnSelectDuplicates.Location = new System.Drawing.Point(332, 25);
+            this.btnSelectDuplicates.Location = new System.Drawing.Point(192, 25);
             this.btnSelectDuplicates.Name = "btnSelectDuplicates";
             this.btnSelectDuplicates.Size = new System.Drawing.Size(112, 47);
             this.btnSelectDuplicates.TabIndex = 6;
@@ -62,11 +62,11 @@
             // 
             // btnDeleteSelected
             // 
-            this.btnDeleteSelected.Location = new System.Drawing.Point(618, 25);
+            this.btnDeleteSelected.Location = new System.Drawing.Point(478, 25);
             this.btnDeleteSelected.Name = "btnDeleteSelected";
-            this.btnDeleteSelected.Size = new System.Drawing.Size(112, 47);
+            this.btnDeleteSelected.Size = new System.Drawing.Size(237, 47);
             this.btnDeleteSelected.TabIndex = 7;
-            this.btnDeleteSelected.Text = "Delete Selected Items";
+            this.btnDeleteSelected.Text = "Permently Remove Selected Items";
             this.btnDeleteSelected.UseVisualStyleBackColor = true;
             this.btnDeleteSelected.Click += new System.EventHandler(this.btnDeleteSelected_Click);
             // 
@@ -81,7 +81,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(39, 25);
+            this.btnRefresh.Location = new System.Drawing.Point(50, 25);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(112, 47);
             this.btnRefresh.TabIndex = 5;
@@ -96,7 +96,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 25);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -105,13 +105,13 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(39, 21);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -120,13 +120,13 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -177,33 +177,33 @@
             this.tvDuplicates.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvDuplicates_AfterCheck);
             this.tvDuplicates.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvDuplicates_NodeMouseDoubleClick);
             // 
-            // button1
+            // btnStopScan
             // 
-            this.button1.Location = new System.Drawing.Point(187, 25);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 47);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Stop Scan";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnStopScan_Click);
+            this.btnStopScan.Location = new System.Drawing.Point(50, 25);
+            this.btnStopScan.Name = "btnStopScan";
+            this.btnStopScan.Size = new System.Drawing.Size(112, 47);
+            this.btnStopScan.TabIndex = 5;
+            this.btnStopScan.Text = "Stop Scan";
+            this.btnStopScan.UseVisualStyleBackColor = true;
+            this.btnStopScan.Click += new System.EventHandler(this.btnStopScan_Click);
             // 
-            // button2
+            // btnDeselectAll
             // 
-            this.button2.Location = new System.Drawing.Point(476, 25);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 47);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Deselect All Items";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnDeselectAll.Location = new System.Drawing.Point(335, 25);
+            this.btnDeselectAll.Name = "btnDeselectAll";
+            this.btnDeselectAll.Size = new System.Drawing.Size(112, 47);
+            this.btnDeselectAll.TabIndex = 8;
+            this.btnDeselectAll.Text = "De-Select All";
+            this.btnDeselectAll.UseVisualStyleBackColor = true;
+            this.btnDeselectAll.Click += new System.EventHandler(this.button2_Click);
             // 
             // pnlButtons
             // 
             this.pnlButtons.Controls.Add(this.btnRefresh);
-            this.pnlButtons.Controls.Add(this.button2);
+            this.pnlButtons.Controls.Add(this.btnDeselectAll);
             this.pnlButtons.Controls.Add(this.btnSelectDuplicates);
             this.pnlButtons.Controls.Add(this.btnDeleteSelected);
-            this.pnlButtons.Controls.Add(this.button1);
+            this.pnlButtons.Controls.Add(this.btnStopScan);
             this.pnlButtons.Location = new System.Drawing.Point(12, 347);
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.Size = new System.Drawing.Size(776, 100);
@@ -252,8 +252,8 @@
         private System.Windows.Forms.ListBox lstPotentialDuplicate;
         private System.Windows.Forms.TreeView tvDuplicates;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnStopScan;
+        private System.Windows.Forms.Button btnDeselectAll;
         private System.Windows.Forms.Panel pnlButtons;
     }
 }
