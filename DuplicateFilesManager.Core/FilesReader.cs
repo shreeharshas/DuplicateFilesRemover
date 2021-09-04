@@ -1,11 +1,11 @@
-﻿using DuplicateFileManager.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Security;
 using System.Threading;
 using System.Threading.Tasks;
+using DuplicateFilesManager.Models;
 
 namespace DuplicateFilesManager.Core
 {

@@ -1,5 +1,4 @@
-﻿using DuplicateFileManager.Models;
-using DuplicateFilesManager.Models;
+﻿using DuplicateFilesManager.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DuplicateFilesManager.Core;
+using DuplicateFilesManager.Enums;
 
 namespace DuplicateFilesManager
 {
@@ -22,7 +22,7 @@ namespace DuplicateFilesManager
 
         private string UserFolderPath;
         //private Dictionary<string, List<DuplicateFile>> DuplicateFiles;
-
+        
         CancellationTokenSource cts = new CancellationTokenSource();
         #endregion
 
@@ -30,26 +30,31 @@ namespace DuplicateFilesManager
         public frmMain()
         {
             InitializeComponent();
+            AppProcessingStatus = ProcessingStatus.Idle;
         }
 
-        private void ShowTreeViewMessage(string message)
+        private void ShowTreeViewMessage(string message, bool isProcessing = false)
         {
             tvDuplicates.Nodes.Clear();
             TreeNode tnMessage = new TreeNode(message);
             tvDuplicates.CheckBoxes = false;
             tvDuplicates.Nodes.Add(tnMessage);
+
+            if(!isProcessing)
+                AppProcessingStatus = ProcessingStatus.Complete;
         }
 
         private async void btnStartScan_Click(object sender, EventArgs e)
         {
+            AppProcessingStatus = ProcessingStatus.Process;
             cts.Dispose();
             cts = new CancellationTokenSource();
             tvDuplicates.Nodes.Clear();
-            ShowTreeViewMessage("Please wait, processing...");
+            ShowTreeViewMessage("Please wait, processing...", true);
             UserFolderPath = txtFolderPath.Text;
             if (String.IsNullOrWhiteSpace(UserFolderPath))
             {
-                MessageBox.Show("Please select folder first");
+                ShowTreeViewMessage("Please select folder first");                
                 return;
             }
 
@@ -86,6 +91,8 @@ namespace DuplicateFilesManager
             {
                 ShowTreeViewMessage("Task Cancelled, press \"Start Scan\" to restart the scan.");
             }
+
+            AppProcessingStatus = ProcessingStatus.Complete;
         }
 
         private void btnFolderSelect_Click(object sender, EventArgs e)
@@ -223,6 +230,7 @@ namespace DuplicateFilesManager
 
         private void btnStopScan_Click(object sender, EventArgs e)
         {
+            AppProcessingStatus = ProcessingStatus.Complete;
             cts.Cancel();
         }
 
