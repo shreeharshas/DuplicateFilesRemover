@@ -13,7 +13,7 @@ This is a single-screen app which looks as follows: <br /> <br/>
 ## Binary file
 
 DuplicateFileManager can be downloaded from here: <br />
-https://github.com/shreeharshas/DuplicateFilesRemover/tree/master/THE%20APP%20IS%20HERE
+https://github.com/shreeharshas/DuplicateFilesRemover/releases/tag/v0.2-beta
 
 
 ## Usage Info:
